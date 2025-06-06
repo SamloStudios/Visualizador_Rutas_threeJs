@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Visualizador de Rutas</title>
+    <link rel="stylesheet" href="default.css">
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-brand">Visualizador de Rutas Terrestres</div>
+      <nav class="navbar-nav">
+        <a href="#" class="nav-link" id="about-link">Acerca de</a> <a href="#features" class="nav-link">Funcionalidades</a>
+        <a href="#contact" class="nav-link">Contacto</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Visualizador de Rutas</h1>
+      <div id="city-popup" class="city-popup" style="display: none;">
+        <label for="city-name">Nombre de ciudad:</label>
+        <input type="text" id="city-name" placeholder="Escribe el nombre de la ciudad"/>
+        <button id="add-city-button">Agregar ciudad</button>
+      </div> 
+      <canvas class="webgl"></canvas>
+    </div>
+    <div class="overlay" style="display: none;"></div>
+    <div id="about-popup" class="info-popup" style="display: none;">
+        <h2>Acerca de este Visualizador</h2>
+        <p>Esta aplicación interactiva te permite visualizar las rutas alrededor del globo en un entorno 3D, utilizando la librería Three.js.</p>
+        <p>Explora cómo podrían ser tus viajes. Usa la mejor ruta*.</p>
+        <p>Diseñado para fines educativos y demostrativos por estudiantes de ----.</p>
+        <p class="small-disclaimer">-------</p>
+        <p class="small-disclaimer">-------</p>
+        <p class="small-disclaimer">-------</p>
+        <p class="small-disclaimer">-------​</p>
+        <button id="close-about-popup">Cerrar</button>
+        <p class="small-disclaimer">*En realidad no se garantiza Xd</p> </div>
+    </div>
+
+
+    <footer class="footer">
+      <p>&copy; 2025 Visualizador de Rutas. Desarrollado con Three.js</p>
+      <p>Créditos: Monocraft Font por <a href="https://github.com/IdreesInc/Monocraft" target="_blank">IdreesInc</a>.</p>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/build/dat.gui.min.js"></script>
+  </body>
+</html>

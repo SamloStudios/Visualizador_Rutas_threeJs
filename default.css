@@ -1,0 +1,342 @@
+@font-face {
+  font-family: monocraft;
+  src: url('static/Monocraft.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: monocraft, monospace;
+  display: flex;
+  flex-direction: column; /* Changed to column to stack header, container, footer */
+  justify-content: space-between; /* Distribute space between header, container, footer */
+  min-height: 100vh;
+  background-color: #282c34;
+  color: #e0e0e0;
+  overflow: hidden;
+  /* New: Background pattern */
+  /* background-image: url('https://images4.alphacoders.com/106/thumb-1920-106826.jpg'); Path to your pattern image */
+  background-size: cover; /* Size of the pattern */
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+  width: 100%;
+  background-color: #1f2227;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  /* Add padding-right to ensure space on very small screens */
+  padding-right: 15px; /* Adjust as needed */
+}
+
+.navbar-brand {
+  font-size: 1.6em;
+  color: #61dafb;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(97, 218, 251, 0.3);
+  /* Allow brand to shrink if necessary */
+  flex-shrink: 1;
+  min-width: 0; /* Important for text overflow ellipsis if brand is too long */
+  white-space: nowrap; /* Keep brand on one line */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+  margin-right: 10em;
+}
+
+.navbar-nav {
+  display: flex;
+  /* Flex-wrap will make items wrap to the next line if there's not enough space */
+  flex-wrap: wrap;
+  /* Distribute space evenly if items wrap */
+  justify-content: flex-end; /* Align to the right */
+  gap: 15px; /* Reduced gap for smaller screens, adjust as needed */
+  /* Allow nav-links to shrink */
+  flex-shrink: 0; /* Prevent the nav from shrinking too much if the brand is long */
+  /* Remove flex-grow from previous versions if it was there */
+}
+
+.nav-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 5px 15px;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap; /* Prevent individual links from breaking */
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #61dafb;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #61dafb;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* --- Main Container Adjustments --- */
+.container {
+  position: relative;
+  width: 100%;
+  flex-grow: 1; /* Allows container to take available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px; /* Space for fixed navbar */
+  margin-bottom: 50px; /* Space for fixed footer */
+}
+
+h1 {
+  position: absolute;
+  top: 0px; /* Adjusted relative to container */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(97, 218, 251, 0.5);
+  z-index: 100;
+}
+
+canvas.webgl {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #1a1a1a;
+  /* min-height: calc(100vh - 120px) Adjust canvas height for header and footer */
+}
+
+.city-popup {
+  position: absolute;
+  background-color: rgba(40, 44, 52, 0.9);
+  padding: 25px;
+  border: 1px solid #61dafb;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.city-popup label {
+  font-size: 1.1em;
+  color: #e0e0e0;
+}
+
+.city-popup input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+  background-color: #3a3f47;
+  color: #e0e0e0;
+  font-family: monocraft, monospace;
+  font-size: 1em;
+  outline: none;
+}
+
+.city-popup input[type="text"]:focus {
+  border-color: #21a1f1;
+  box-shadow: 0 0 8px rgba(33, 161, 241, 0.5);
+}
+
+.city-popup button {
+  padding: 12px 20px;
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: monocraft, monospace;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.city-popup button:hover {
+  background-color: #21a1f1;
+  transform: translateY(-2px);
+}
+
+.city-popup button:active {
+  transform: translateY(0);
+}
+
+/* --- Footer Styling --- */
+.footer {
+  width: 100%;
+  background-color: #1f2227; /* Matching navbar background */
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #a0a0a0; /* Softer color for credits */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4); /* Subtle shadow above footer */
+  position: fixed; /* Keep footer at the bottom */
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer a {
+  color: #61dafb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #21a1f1;
+}
+
+
+/* NEW POPUP: General styling for info-popups */
+.info-popup {
+  display: none; /* Hidden by default, JavaScript will change this */
+  position: absolute;
+  background-color: rgba(40, 44, 52, 0.95); /* Slightly less transparent */
+  padding: 30px; /* More padding for text content */
+  border: 1px solid #61dafb;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  z-index: 210; /* Higher than navbar, ensuring it's on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centered */
+  max-width: 500px; /* Limit width for readability */
+  text-align: center; /* Center text */
+  color: #e0e0e0;
+  animation: fadeInScale 0.3s ease-out forwards; /* Add simple animation */
+}
+
+.info-popup h2 {
+    color: #61dafb;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.info-popup p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.info-popup button {
+  padding: 12px 25px;
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: monocraft, monospace;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px; /* Space above button */
+}
+
+.info-popup button:hover {
+  background-color: #21a1f1;
+  transform: translateY(-2px);
+}
+
+.info-popup button:active {
+  transform: translateY(0);
+}
+
+/* Optional: Overlay background when popup is active */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  z-index: 205; /* Between content and popup */
+}
+
+/* Keyframe for simple fade-in and scale animation */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* --- Media Query for smaller screens (Optional but recommended) --- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack brand and nav vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 10px 15px; /* Adjust padding for smaller screens */
+  }
+
+  .navbar-brand {
+    margin-bottom: 10px; /* Space between brand and nav links */
+    font-size: 1.4em;
+    width: 100%; /* Make brand take full width */
+  }
+
+  .navbar-nav {
+    width: 100%; /* Make nav links take full width */
+    justify-content: space-around; /* Distribute links evenly when stacked */
+    gap: 10px; /* Reduce gap further for very small screens */
+  }
+
+  .nav-link {
+    font-size: 1em; /* Smaller font for links */
+    padding: 5px; /* Add some padding to make them easier to tap */
+    flex-basis: auto; /* Allow links to take natural width within `space-around` */
+  }
+}
+
+/* For extremely small screens if links still overflow */
+@media (max-width: 480px) {
+    .navbar-nav {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center stacked links */
+    }
+    .nav-link {
+        width: 100%; /* Make each link take full width */
+        text-align: center; /* Center link text */
+    }
+}
+
+.info-popup .small-disclaimer {
+  font-size: 0.8em; /* Smaller font size */
+  color: #a0a0a0;   /* A bit dimmer than regular text */
+  margin-top: 5px; /* Add some space above it, below the button */
+  margin-bottom: 0; /* Remove default bottom margin if not needed */
+}
+
+.dg.main {
+  z-index: 2001; /* Ensure dat.gui is above other elements */
+  position: relative; /* Relative positioning to stack correctly */
+  margin-top: 70px; /* Space from the top */
+}
